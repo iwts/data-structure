@@ -3,7 +3,6 @@
 /*
 二分查找想一想就能理解，注意二分时 low 与 hight 的含义。
 */
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main{
