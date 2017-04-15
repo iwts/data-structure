@@ -1,0 +1,86 @@
+/*迭代法求字符串的共同子串关系*/
+
+/*
+参考 清华-邓俊辉-数据结构-动态规划
+http://www.bilibili.com/video/av6838401/index_7.html
+求出所有情况对应的矩阵，可以利用矩阵完成子串的操作
+*/
+
+/*
+题意：
+给2个字符串，求两者共有的子串以及其他操作。例如：
+	didactical 与
+	advantage
+共同子串为：data
+*/
+
+/*
+题解：
+理解动态规划思想：利用递归得到思路，再反向使用迭代得到快速解。
+
+递归：
+对于序列 A[0,n] B[0,m]
+1.n = -1 or m = -1 取空
+2.从后向前去取，如果发现字符相同，那么就直接切割。例：
+	didacticae	
+	 advantage	最后都为 e 那么就取出 e 留下剩余的：
+	 didactica	
+	  advantag  继续比较
+  此为：减而治之
+3.如果发现字符不相同，就有两种情况，演变成斐波那契数列的情况：
+	didactica	a 
+	 advantag 	g
+	有两种情况：a 不属于子串（对子串的生成无贡献）或者是 g
+	那么就要分开讨论两种情况，即进入两个递归
+  此为：分而治之
+
+参考斐波那契数列，由于在比较坏的情况下，也需要分2次进行递归，
+该算法的时间复杂度为 O(n^2)
+
+迭代：
+分析完递归，就考虑迭代。使用由于考虑减而治之与分而治之，所以可以
+将子串写成矩阵的形式：
+		  d i d a c t i c a e
+		  0 0 0 0 0 0 0 0 0 0 
+	  a	0 0 0 0 1 1 1 1 1 1 1 
+	  d	0 1 1 1 1 1 1 1 1 1 1 
+	  v	0 1 1 1 1 1 1 1 1 1 1 
+	  a	0 1 1 1 2 2 2 2 2 2 2 
+	  n	0 1 1 1 2 2 2 2 2 2 2 
+	  t	0 1 1 1 2 2 3 3 3 3 3 
+	  a	0 1 1 1 2 2 3 3 3 4 4 
+	  g	0 1 1 1 2 2 3 3 3 4 4 
+	  e	0 1 1 1 2 2 3 3 3 4 4 
+矩阵在完成的时候，首先要把 n = -1 or m = -1 的情况写上，即全取0。
+然后考虑减而治之与分而治之。
+减而治之：将左上角元素+1
+分而治之：值为上方元素与左方元素的最大值
+
+利用迭代得到的结果可以完成很多操作，如打印子串，确认子串长度等。
+*/
+
+/*Java 打印出上方矩阵*/
+public class Main{
+	public static void main(String[] args){
+		String stra = new String("didactical");
+		String strb = new String("advantage");
+
+		int[][] map = new int[strb.length()+1][stra.length()+1];
+		for(int i = 1;i <= strb.length();i++){
+			for(int j = 1;j <= stra.length();j++){
+				if(stra.charAt(j-1) == strb.charAt(i-1)){
+					map[i][j] = map[i-1][j-1]+1;
+				}else{
+					int max = map[i][j-1] < map[i-1][j] ? map[i-1][j] : map[i][j-1];
+					map[i][j] = max;
+				}
+			}
+		}
+		for(int i = 0;i <= strb.length();i++){
+			for(int j = 0;j <= stra.length();j++){
+				System.out.printf("%d ",map[i][j]);
+			}
+			System.out.println();
+		}
+	}
+}
