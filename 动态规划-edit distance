@@ -15,7 +15,7 @@
 	矩阵长宽仍然要+1，求子串保留的都是 0 ，而 edit distance 保
 留的是 0 - a.length 与 0 - b.length。
 	如果元素相同，x[i][j] = x[i-1][j-1]
-	如果元素不同，x[i][j] = min(x[i][j-1]+1,x[i-1][j]+1)
+	如果元素不同，x[i][j] = min(x[i][j-1]+1,x[i-1][j]+1,x[i-1][j-1]+1)
 	最后：x[a.length-1][b.length-1] 位置的数，就是编辑次数，即：
 edit distance
 */
@@ -38,38 +38,48 @@ D(i,j)可能的取值为:
 /*Java 实现代码，最后输出的是矩阵便于理解*/
 import java.util.Scanner;
 
-public class Main{
-	public static void main(String[] args){
+public class Main {
+	public static int min(int a,int b,int c){
+		int minnum = a;
+		if(minnum > b){
+			minnum = b;
+		}
+		if(minnum > c){
+			minnum = c;
+		}
+		return minnum;
+	}
+	
+	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-
+		
 		String a = input.next();
 		String b = input.next();
 		int al = a.length();
 		int bl = b.length();
-
-		int[][] x = new int[bl+1][al+1];
-
-		for(int i = 1;i < al+1;i++){
-			x[0][i] = i;
-		}
-		for(int i = 1;i < bl+1;i++){
+		int[][] x = new int[al+1][bl+1];
+		
+		for(int i = 1;i <= al;i++){
 			x[i][0] = i;
 		}
-
-		for(int i = 1;i < bl+1;i++){
-			for(int j = 1;j < al+1;j++){
-				if(b.charAt(i-1) == a.charAt(j-1)){
+		for(int i = 1;i <= bl;i++){
+			x[0][i] = i;
+		}
+		
+		for(int i = 1;i <= al;i++){
+			for(int j = 1;j <= bl;j++){
+				if(a.charAt(i-1) == b.charAt(j-1)){
 					x[i][j] = x[i-1][j-1];
 				}else{
-					x[i][j] = (x[i-1][j] > x[i][j-1] ? x[i][j-1]+1 : x[i-1][j]+1);
+					x[i][j] = min(x[i-1][j-1],x[i-1][j],x[i][j-1])+1;
 				}
 			}
 		}
-		for(int i = 0;i < bl+1;i++){
-			for(int j = 0;j < al+1;j++){
+		for(int i = 0;i <= al;i++){
+			for(int j = 0;j <= bl;j++){
 				System.out.printf("%d ",x[i][j]);
 			}
 			System.out.println();
-		}
+		}	
 	}
 }
