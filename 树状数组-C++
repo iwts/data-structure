@@ -4,9 +4,10 @@
 using namespace std;
 
 int tree[100010];
+int N = 100005;
 
 void update(int index,int n){
-	for(int i = index;i < n;i += (i&-i)){
+	for(int i = index;i < N;i += (i&-i)){
 		tree[i] += n;
 	}
 }
