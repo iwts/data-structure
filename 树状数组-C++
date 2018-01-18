@@ -1,0 +1,26 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+int tree[100010];
+
+void update(int index,int n){
+	for(int i = index;i < n;i += (i&-i)){
+		tree[i] += n;
+	}
+}
+
+int query_sum(int n){
+	int ans = 0;
+	for(int i = n;i > 0;i -= (i&-i)){
+		ans += tree[i];
+	}
+	return ans;
+}
+
+int main() {
+    
+    system("pause");
+    return 0;
+}
