@@ -19,6 +19,13 @@
 
 # 2 目录
 
+# 2.1 C语言类
+
 * [AVL树](https://github.com/iwts/data-structure/blob/master/AVL.c)
+* [二分查找树](https://github.com/iwts/data-structure/blob/master/binary-search-tree.c)
+
+# 2.2 Java类
+
+* [用ArrayList实现整型栈](https://github.com/iwts/data-structure/blob/master/ArrayList-for-integer-stack.java)
 
 ---------------未完待续---------------
