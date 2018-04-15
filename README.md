@@ -24,11 +24,13 @@
 * [AVL树](https://github.com/iwts/data-structure/blob/master/AVL.c)
 * [二叉查找树](https://github.com/iwts/data-structure/blob/master/binary-search-tree.c)
 * [双向链表](https://github.com/iwts/data-structure/blob/master/double-way-linked-list.c)
+* [用栈实现十进制转N进制](https://github.com/iwts/data-structure/blob/master/Decimal-to-N-ary-with-stack.c)
 
 # 2.2 Java类
 
 * [用ArrayList实现整型栈](https://github.com/iwts/data-structure/blob/master/ArrayList-for-integer-stack.java)
 * [二叉查找树](https://github.com/iwts/data-structure/blob/master/binary-search-tree.java)
 * [单向链表](https://github.com/iwts/data-structure/blob/master/one-way-linked-list.java)
+* [双向链表](https://github.com/iwts/data-structure/blob/master/double-way-linked-list.java)
 
 ---------------未完待续---------------
