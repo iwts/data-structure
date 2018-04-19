@@ -25,6 +25,7 @@
 * [二叉查找树](https://github.com/iwts/data-structure/blob/master/binary-search-tree.c)
 * [双向链表](https://github.com/iwts/data-structure/blob/master/double-way-linked-list.c)
 * [用栈实现十进制转N进制](https://github.com/iwts/data-structure/blob/master/Decimal-to-N-ary-with-stack.c)
+* [双栈实现表达式求值](https://github.com/iwts/data-structure/blob/master/expression-evaluation-with-two-stack.c)
 
 # 2.2 Java类
 
