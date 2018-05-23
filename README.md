@@ -27,6 +27,7 @@
 * [用栈实现十进制转N进制](https://github.com/iwts/data-structure/blob/master/Decimal-to-N-ary-with-stack.c)
 * [双栈实现表达式求值](https://github.com/iwts/data-structure/blob/master/expression-evaluation-with-two-stack.c)
 * [图的一个应用，利用邻接矩阵与Floyd算法](https://github.com/iwts/data-structure/blob/master/graph-ans-adjacency-matrix-and-Floyd.c)
+* [图的表示以及邻接矩阵](https://github.com/iwts/data-structure/blob/master/graphs-and-adjacency-matrices.c)
 
 # 2.2 Java类
 
