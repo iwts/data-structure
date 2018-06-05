@@ -36,4 +36,8 @@
 * [单向链表](https://github.com/iwts/data-structure/blob/master/one-way-linked-list.java)
 * [双向链表](https://github.com/iwts/data-structure/blob/master/double-way-linked-list.java)
 
+# 2.3 C++类
+
+* [动态字典树](https://github.com/iwts/data-structure/blob/master/trie-tree(dynamic).cpp)
+
 ---------------未完待续---------------
