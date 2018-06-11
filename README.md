@@ -40,5 +40,6 @@
 
 * [动态字典树](https://github.com/iwts/data-structure/blob/master/trie-tree(dynamic).cpp)
 * [静态字典树](https://github.com/iwts/data-structure/blob/master/trie-tree(static).cpp)
+* [并查集](https://github.com/iwts/data-structure/blob/master/union-find-set.cpp)
 
 ---------------未完待续---------------
