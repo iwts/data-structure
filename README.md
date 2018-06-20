@@ -29,6 +29,7 @@
 * [图的一个应用，利用邻接矩阵与Floyd算法](https://github.com/iwts/data-structure/blob/master/graph-ans-adjacency-matrix-and-Floyd.c)
 * [图的表示以及邻接矩阵](https://github.com/iwts/data-structure/blob/master/graphs-and-adjacency-matrices.c)
 * [顺序链表实现多项式运算](https://github.com/iwts/data-structure/blob/master/polynomial-with-order-list.c)
+* [顺序结构实现循环链表](https://github.com/iwts/data-structure/blob/master/circular-list-with-sequence-structure.c)
 
 # 2.2 Java类
 
