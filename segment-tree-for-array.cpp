@@ -115,3 +115,56 @@ int main() {
 	system("pause");
 	return 0;
 }
+
+// 染色情况下的模板，0 -1 正整数作为结点值
+/*
+void push_down(int node, int l, int r) {
+    if (lz[node]) {
+        int mid = (l + r) / 2;
+        lz[node * 2] = lz[node];
+        lz[node * 2 + 1] = lz[node];
+        tree[node * 2] = lz[node];
+        tree[node * 2 + 1] = lz[node];
+        lz[node] = 0;
+    }
+}
+
+void update_range(int node, int l, int r, int L, int R, int add) {
+    if (l <= L && r >= R) {
+        lz[node] = add;
+        tree[node] = add; // 更新方式
+        return;
+    }
+    push_down(node, L, R);
+    int mid = (L + R) / 2;
+    if (mid >= l) update_range(node * 2, l, r, L, mid, add);
+    if (mid < r) update_range(node * 2 + 1, l, r, mid + 1, R, add);
+    if (tree[node * 2] == tree[node * 2 + 1]) {
+        tree[node] = tree[node * 2];
+    }else {
+        tree[node] = -1;
+    }
+}
+
+void query_range(int node, int L, int R, int l, int r) {
+    if (l <= L && r >= R) {
+        if (tree[node] == 0) return;
+        if (tree[node] == -1) {
+            push_down(node, L, R);
+            int mid = (L + R) / 2;
+            if (mid >= l) query_range(node * 2, L, mid, l, r);
+            if (mid < r) query_range(node * 2 + 1, mid + 1, R, l, r);
+        }else {
+            if (color[tree[node]] == 0) {
+                ans++;
+                color[tree[node]] = 1;
+            }
+        }
+        return;
+    }
+    push_down(node, L, R);
+    int mid = (L + R) / 2;
+    if (mid >= l) query_range(node * 2, L, mid, l, r);
+    if (mid < r) query_range(node * 2 + 1, mid + 1, R, l, r);
+}
+*/
