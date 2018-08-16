@@ -168,3 +168,18 @@ void query_range(int node, int L, int R, int l, int r) {
     if (mid < r) query_range(node * 2 + 1, mid + 1, R, l, r);
 }
 */
+
+/*
+放弃lazy数组，添加剪枝的区间更新
+void update_range(int node,int l,int r,int L,int R,int add){
+	if(L == R){
+		tree[node] = 1; // 更新方式
+		return;
+	}
+	push_down(node,L,R);
+	int mid = (L+R) / 2;
+	if(mid >= l && cleck(node*2,L,mid)) update_range(node*2,l,r,L,mid,add);
+	if(mid < r && cleck(node*2+1,mid+1,R)) update_range(node*2 + 1,l,r,mid+1,R,add);
+	tree[node] = tree[node*2] + tree[node*2 + 1];
+}
+*/
