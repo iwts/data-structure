@@ -44,5 +44,6 @@
 * [静态字典树](https://github.com/iwts/data-structure/blob/master/trie-tree(static).cpp)
 * [并查集](https://github.com/iwts/data-structure/blob/master/union-find-set.cpp)
 * [数组实现线段树](https://github.com/iwts/data-structure/blob/master/segment-tree-for-array.cpp)
+* [有环链表](https://github.com/iwts/data-structure/blob/master/ring-linked-list.cpp)
 
 ---------------未完待续---------------
