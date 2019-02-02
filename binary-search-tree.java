@@ -1,140 +1,285 @@
-/*二叉查找树*/
+package me.iwts;
 
-/*
-关于二叉查找树：
-	二叉查找树是二叉树的一个应用，使二叉树成为二叉查找树的规则为：对于
-树中每个节点，左子树中所有关键字的值都是小于节点，而右子树则是大于节点，
-要求是绝对大的情况，例如下例：
-			5
-		2		8
-	  1	  X
-X的位置是必须是 >2 <5 只有这样是二叉查找树，即对根而言，左边的所有元素
-都比根小，右边的全部大于根。
-	可以说，如果自己创建二叉查找树的话，不可能出现上面那种情况。
+class BST<Key extends Comparable<Key>, Value>{
+    public Node root;
 
-关于重复：
-	二叉查找树允许重复这种情况的存在，解决方法就是使用一个变量进行记录，
-下面的代码使用了 times 作为记录，初始值都是 1 ，在插入之类的操作在进行
-的时候更新 times 的值即可。
+    public class Node{
+        private Key key;
+        private Value value;
+        private Node left;
+        private Node right;
+        private Node father;
 
-insert：
-	可以看成一次更新，每次插入操作，要么是插入一个新叶，要么更新一个节
-点的 times。可以看成一个查找，直到到达树叶，进行更新，或者更新 times。
+        public Node(Key key,Value value){
+            this.key = key;
+            this.value = value;
+        }
+    }
 
-Deate：
-	有两种删除方法，懒惰删除和一般删除。
-懒惰删除：
-	最简单的删除方法，由于使用了数据域 times ，所以每个节点默认是 1。
-那么在删除的时候可以直接更改 times 的值。那么如果使用懒惰删除，需要对应
-地更改 find 等方法，添加判断 times 是否为 0。判断的位置要确定，只有对比
-是否相等的时候才判断 times。
-	使用懒惰删除，内存的占用不会随着删除操作而减少，变化的只是 times 而
-已。所以进行大量删除操作后，进行其他操作的时间不会减少。
-*/
+//    递归方法进行搜索
+//    public Value get(Key key){
+//        if(key == null) return null;
+//        return get(this.root,key);
+//    }
+//    public Value get(Node root,Key key){
+//        if(root == null) return null;
+//        int cmp = key.compareTo(root.key);
+//        if(cmp == 0){
+//            return root.value;
+//        }else{
+//            if(cmp < 0){
+//                return get(root.left,key);
+//            }else{
+//                return get(root.right,key);
+//            }
+//        }
+//    }
 
-public class SearchTree{
-	public int data;
-	public int times = 1;
-	public SearchTree parent = null;
-	public SearchTree left = null;
-	public SearchTree right = null;
+    public Value get(Key key){
+        if(key == null) return null;
+        return get(this.root,key);
+    }
+    public Value get(Node root,Key key){
+        while(root != null){
+            int cmp = key.compareTo(root.key);
+            if(cmp == 0) return root.value;
+            if(cmp < 0){
+                root = root.left;
+            }else{
+                root = root.right;
+            }
+        }
+        return null;
+    }
 
-	SearchTree(int data){
-		this.data = data;
-	}
+    public Value max(){
+        if(root == null) return null;
+        Node temp = max(root);
+        return temp.value;
+    }
+    public Node max(Node root){
+        if(root == null) return null;
+        while(root.right != null){
+            root = root.right;
+        }
+        return root;
+    }
 
-	public void makeEmpty(){
-		this.left = null;
-		this.right = null;
-	}
-	public boolean isEmpty(){
-		if((left == null)&&(right == null)){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	public SearchTree find(int data){
-		if(this.data == data){
-			return this;
-		}
-		if((data > this.data)&&(right != null)){
-			return right.find(data);
-		}
-		if((data < this.data)&&(left != null)){
-			return left.find(data);
-		}
-		return null;
-	}
-	public SearchTree findMax(){
-		if(right != null){
-			return right.findMax();
-		}else{
-			return this;
-		}
-	}
-	public SearchTree findMin(){
-		if(left != null){
-			return left.findMax();
-		}else{
-			return this;
-		}
-	}
-	public void insert(int data){
-		if(this.data == data){
-			times++;
-			return;
-		}
-		if((data > this.data)&&(right != null)){
-			return right.insert(data);
-		}
-		if((data < this.data)&&(left != null)){
-			return left.insert(data);
-		}
-		if((data > this.data)&&(right == null)){
-			right = new SearchTree(data);
-			right.parent = this;
-			return;
-		}
-		if((data < this.data)&&(left == null)){
-			left = new SearchTree(data);
-			left.parent = this;
-			return;
-		}
-	}
-	public void lazyDelete(int data){
-		this.find(data).times--;
-	}
-	public void delete(int data,SearchTree last){
-		if(data == this.data){
-			if(left == null && right == null){
-				last = null;
-			}
-			if(left != null && right == null){
-				last = left;
-			}
-			if(left == null && right != null){
-				last = right;
-			}
-			if(left != null && right != null){
-				if(right.left == null){
-					right.left = left;
-					last = right;
-				}else{
-					last = right.left;
-					right.left.left = left;
-					right.left = right.left.right;
-					right.left.right = right;
-				}
-			}
-		}
-		if((data > this.data)&&(right != null)){
-			last = this.right;
-			right.delete(data,last);
-		}
-		if((data < this.data)&&(left != null)){
-			last = this.left;
-			left.delete(data,last);
-		}
-	}
+    public Value min(){
+        if(root == null) return null;
+        Node temp = min(root);
+        return temp.value;
+    }
+    public Node min(Node root){
+        if(root == null) return null;
+        while(root.left != null){
+            root = root.left;
+        }
+        return root;
+    }
+
+    public Value floor(Key key){
+        if(root == null || key == null) return null;
+        return floor(root,key);
+    }
+    public Value floor(Node root,Key key){
+        Value res = null;
+        while(root != null){
+            int cmp = key.compareTo(root.key);
+            if(cmp == 0) return root.value;
+            if(cmp < 0){
+                root = root.left;
+            }else{
+                res = root.value;
+                root = root.right;
+            }
+        }
+        return res;
+    }
+
+    public Value ceiling(Key key){
+        if(root == null || key == null) return null;
+        return ceiling(root,key);
+    }
+    public Value ceiling(Node root,Key key){
+        Value res = null;
+        while(root != null){
+            int cmp = key.compareTo(root.key);
+            if(cmp == 0) return root.value;
+            if(cmp < 0){
+                root = root.left;
+                root = root.left;
+            }else{
+                res = root.value;
+            }
+        }
+        return res;
+    }
+
+    public void put(Key key,Value value){
+        if(key == null || value == null) return;
+        if(root == null){
+            root = new Node(key,value);
+            return;
+        }
+        put(root,key,value);
+    }
+    public void put(Node root,Key key,Value value){
+        while(root != null){
+            int cmp = key.compareTo(root.key);
+            if(cmp == 0){
+                root.value = value;
+                return;
+            }
+            if(cmp < 0){
+                if(root.left == null){
+                    root.left = new Node(key,value);
+                    root.left.father = root;
+                    return;
+                }else{
+                    root = root.left;
+                }
+            }else{
+                if(root.right == null){
+                    root.right = new Node(key,value);
+                    root.right.father = root;
+                    return;
+                }else{
+                    root = root.right;
+                }
+            }
+        }
+    }
+    
+    public void deleteMin(){
+        deleteMin(root);
+    }
+    public void deleteMin(Node root){
+        Node res = min(root);
+        if(res.father == null){
+            this.root = null;
+        }else{
+            if(res.father.left.key.compareTo(res.key) == 0){
+                res.father.left = res.right;
+            }else{
+                res.father.right = res.right;
+            }
+        }
+    }
+
+    public void deleteMax(){
+        deleteMax(root);
+    }
+    public void deleteMax(Node root){
+        Node res = max(root);
+        if(res.father == null){
+            this.root = null;
+        }else{
+            if(res.father.left.key.compareTo(res.key) == 0){
+                res.father.left = res.left;
+            }else{
+                res.father.right = res.left;
+            }
+        }
+    }
+
+    public void delete(Key key){
+        if(key == null) return;
+        // 删除根的情况，需要额外处理
+        if(key.compareTo(root.key) == 0){
+            if(root.left == null && root.right == null){
+                root = null;
+            }else{
+                if(root.left != null && root.right != null){
+                    Node temp = min(root.right);
+                    deleteMin(root.right);
+                    temp.left = root.left;
+                    temp.right = root.right;
+                    root = temp;
+                }else{
+                    if(root.left == null){
+                        root = root.right;
+                    }else{
+                        root = root.left;
+                    }
+                }
+            }
+        }else{
+            // 其他情况
+            delete(root,key);
+        }
+    }
+    public void delete(Node root,Key key){
+        // flag处理方向，父结点是从左子树连接下来还是右子树
+        int flag = 0;
+        while(root != null){
+            int cmp = key.compareTo(root.key);
+            if(cmp == 0){
+                Node father = root.father;
+                if(root.left == null && root.right == null){
+                    if(flag == 1){
+                        father.left = null;
+                    }else{
+                        father.right = null;
+                    }
+                }else{
+                    // 核心算法部分
+                    if(root.left != null && root.right != null){
+                        // 找右子树最小结点
+                        Node temp = min(root.right);
+                        deleteMin(root.right);
+                        temp.left = root.left;
+                        temp.right = root.right;
+                        temp.father = root.father;
+                        if(flag == 1){
+                            father.left = temp;
+                        }else{
+                            father.right = temp;
+                        }
+                    }else{
+                        if(root.left == null){
+                            if(flag == 1){
+                                father.left = root.right;
+                            }else{
+                                father.right = root.right;
+                            }
+                            root.right.father = father;
+                        }else{
+                            if(flag == 1){
+                                father.left = root.left;
+                            }else{
+                                father.right = root.left;
+                            }
+                            root.left.father = father;
+                        }
+                    }
+                }
+                return;
+            }else{
+                if(cmp < 0){
+                    root = root.left;
+                    flag = 1;
+                }else{
+                    root = root.right;
+                    flag = 2;
+                }
+            }
+        }
+    }
+}
+
+public class Main{
+    public static void main(String[] args){
+        BST<String,String> bst = new BST<>();
+        bst.put("s","s");
+        bst.put("e","e");
+        bst.put("a","a");
+        bst.put("c","c");
+        bst.put("r","r");
+        bst.put("h","h");
+        bst.put("m","m");
+        bst.put("x","x");
+        bst.delete("e");
+        System.out.println(bst.min());
+    }
 }
