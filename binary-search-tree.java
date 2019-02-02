@@ -1,9 +1,9 @@
 package me.iwts;
 
 class BST<Key extends Comparable<Key>, Value>{
-    public Node root;
+    private Node root;
 
-    public class Node{
+    private class Node{
         private Key key;
         private Value value;
         private Node left;
