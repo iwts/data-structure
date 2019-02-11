@@ -30,6 +30,12 @@
 * [图的表示以及邻接矩阵](https://github.com/iwts/data-structure/blob/master/graphs-and-adjacency-matrices.c)
 * [顺序链表实现多项式运算](https://github.com/iwts/data-structure/blob/master/polynomial-with-order-list.c)
 * [顺序结构实现循环链表](https://github.com/iwts/data-structure/blob/master/circular-list-with-sequence-structure.c)
+* [栈](https://github.com/iwts/data-structure/blob/master/stack.c)
+* [约瑟夫环-链表实现](https://github.com/iwts/data-structure/blob/master/josephus-problem.c)
+* [链表](https://github.com/iwts/data-structure/blob/master/linked-list.c)
+* [顺序表](https://github.com/iwts/data-structure/blob/master/sequence-list.c)
+* [顺序表-最早写的](https://github.com/iwts/data-structure/blob/master/sequence-list(old).c)
+* [队列](https://github.com/iwts/data-structure/blob/master/queue.c)
 
 # 2.2 Java类
 
@@ -37,6 +43,8 @@
 * [二叉查找树](https://github.com/iwts/data-structure/blob/master/binary-search-tree.java)
 * [单向链表](https://github.com/iwts/data-structure/blob/master/one-way-linked-list.java)
 * [双向链表](https://github.com/iwts/data-structure/blob/master/double-way-linked-list.java)
+* [int类型栈](https://github.com/iwts/data-structure/blob/master/stack-of-integers.java)
+* [树](https://github.com/iwts/data-structure/blob/master/tree.java)
 
 # 2.3 C++类
 
@@ -45,5 +53,7 @@
 * [并查集](https://github.com/iwts/data-structure/blob/master/union-find-set.cpp)
 * [数组实现线段树](https://github.com/iwts/data-structure/blob/master/segment-tree-for-array.cpp)
 * [有环链表](https://github.com/iwts/data-structure/blob/master/ring-linked-list.cpp)
+* [树状数组](https://github.com/iwts/data-structure/blob/master/BIT.cpp)
+* [线段数](https://github.com/iwts/data-structure/blob/master/segment-tree.cpp)
 
 ---------------未完待续---------------
