@@ -45,6 +45,7 @@
 * [双向链表](https://github.com/iwts/data-structure/blob/master/double-way-linked-list.java)
 * [int类型栈](https://github.com/iwts/data-structure/blob/master/stack-of-integers.java)
 * [树](https://github.com/iwts/data-structure/blob/master/tree.java)
+* [红黑树](https://github.com/iwts/data-structure/blob/master/red-black-tree.java)
 
 # 2.3 C++类
 
